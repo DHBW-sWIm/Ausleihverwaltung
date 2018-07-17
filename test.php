@@ -117,8 +117,13 @@ $event->trigger();
 
 // Print the page header.
 
+<<<<<<< HEAD
+$PAGE->set_url('/mod/apeinsdrei/new_resource_view.php', array('id' => $cm->id));
+$PAGE->set_title(format_string($apeinsdrei->name));
+=======
 $PAGE->set_url('/mod/apsechseins/view.php', array('id' => $cm->id));
 $PAGE->set_title(format_string($apsechseins->name));
+>>>>>>> master
 $PAGE->set_heading(format_string($course->fullname));
 
 /*

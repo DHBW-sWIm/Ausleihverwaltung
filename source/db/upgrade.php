@@ -13,7 +13,6 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
  * This file keeps track of upgrades to the ausleihverwaltung module
  *
@@ -28,9 +27,7 @@
  * @copyright  2016 Your Name <your@email.address>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 defined('MOODLE_INTERNAL') || die();
-
 /**
  * Execute ausleihverwaltung upgrade from the given old version
  *
@@ -38,6 +35,7 @@ defined('MOODLE_INTERNAL') || die();
  * @return bool
  */
 function xmldb_ausleihverwaltung_upgrade($oldversion) {
+<<<<<<< HEAD
     global $DB;
 
     $dbman = $DB->get_manager(); // Loads ddl manager and xmldb classes.
@@ -93,5 +91,8 @@ function xmldb_ausleihverwaltung_upgrade($oldversion) {
         // ausleihverwaltung savepoint reached.
         upgrade_mod_savepoint(true, 2018071106, 'ausleihverwaltung');
     }
+=======
+    
+>>>>>>> master
     return true;
 }
