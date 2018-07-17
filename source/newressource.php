@@ -102,11 +102,10 @@ if ($apeinsdrei->intro) {
 $strName = "Ressource anlegen";
 echo $OUTPUT->heading($strName);
 
-
-$type = $_GET['type'];
-$ressourcename = $_GET['ressourcename'];
-$category = $_GET['category'];
-$tags = $_GET['tags'];
+$type = $_SESSION['type'];
+$ressourcename = $_SESSION['ressourcename'];
+$category = $_SESSION['category'];
+$tags = $_SESSION['tags'];
 
 if ($type == 1){
     require_once(dirname(__FILE__).'/forms/newresourceformst.php');
@@ -127,12 +126,12 @@ if ($mform->is_cancelled()) {
         $kommentar = $fromform->kom;
 
         $stueck = new stdClass();
-        $stueck->name = $fromfrom->ressourcename;
+        $stueck->name = $ressourcename;
         $stueck->description = $beschreibung;
-        $stueck->type = $fromfrom->type;
+        $stueck->type = $type;
         $stueck->status = 1;
-        $stueck->maincategory = $fromfrom->category;
-        $stueck->subcategory = $fromfrom->tags;
+        $stueck->maincategory = $category;
+        $stueck->subcategory = $tags;
         $stueck->comment = $kommentar;
         $stueck->serialnumber = $seriennummer;
         $stueck->inventorynumber = $inventarnummer;
@@ -141,19 +140,19 @@ if ($mform->is_cancelled()) {
             ?> <script type="text/javascript">alert("Ressource angelegt!")</script><?php
         };
         
-        echo $OUTPUT->single_button(new moodle_url('../apeinsdrei/view.php', array('id' => $cm->id)), 'Home');
+        echo $OUTPUT->single_button(new moodle_url('../apeinsdrei/new_resource_view.php', array('id' => $cm->id)), 'Home');
     }else{
         $beschreibung = $fromform->besch;
         $kommentar = $fromform->kom;
         $anzahl = $fromform->anz;
 
         $stueck = new stdClass();
-        $stueck->name = $fromfrom->ressourcename;
+        $stueck->name = $ressourcename;
         $stueck->description = $beschreibung;
-        $stueck->type = $fromfrom->type;
+        $stueck->type = $type;
         $stueck->status = 1;
-        $stueck->maincategory = $fromfrom->category;
-        $stueck->subcategory = $fromfrom->tags;
+        $stueck->maincategory = $category;
+        $stueck->subcategory = $tags;
         $stueck->comment = $kommentar;
         $stueck->amount = $anzahl;
         $success = $DB->insert_record('ausleihverwaltung_resources', $stueck, false, $bulk=false);
@@ -161,11 +160,11 @@ if ($mform->is_cancelled()) {
             ?> <script type="text/javascript">alert("Ressource angelegt!")</script><?php
         };
         
-        echo $OUTPUT->single_button(new moodle_url('../apeinsdrei/view.php', array('id' => $cm->id)), 'Home');
+        echo $OUTPUT->single_button(new moodle_url('../apeinsdrei/new_resource_view.php', array('id' => $cm->id)), 'Home');
     }
 
     //Button Funktionalität hinzugefügt
-    //redirect(new moodle_url('../apeinsdrei/view.php', array('id' => $cm->id)));
+    //redirect(new moodle_url('../apeinsdrei/new_resource_view.php', array('id' => $cm->id)));
  
  } else {
     $formdata = array('id' => $id);

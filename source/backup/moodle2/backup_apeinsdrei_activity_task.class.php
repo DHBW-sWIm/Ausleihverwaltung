@@ -51,7 +51,7 @@ class backup_apeinsdrei_activity_task extends backup_activity_task {
     }
 
     /**
-     * Encodes URLs to the index.php and view.php scripts
+     * Encodes URLs to the index.php and new_resource_view.php scripts
      *
      * @param string $content some HTML text that eventually contains URLs to the activity instance scripts
      * @return string the content with the URLs encoded
@@ -66,7 +66,7 @@ class backup_apeinsdrei_activity_task extends backup_activity_task {
         $content = preg_replace($search, '$@apeinsdreiINDEX*$2@$', $content);
 
         // Link to apeinsdrei view by moduleid.
-        $search = '/('.$base.'\/mod\/apeinsdrei\/view.php\?id\=)([0-9]+)/';
+        $search = '/('.$base.'\/mod\/apeinsdrei\/new_resource_view.php\?id\=)([0-9]+)/';
         $content = preg_replace($search, '$@apeinsdreiVIEWBYID*$2@$', $content);
 
         return $content;

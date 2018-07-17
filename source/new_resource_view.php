@@ -75,7 +75,7 @@ $DB->insert_record('resources', $record, $returnid=false, $bulk=false);
 */
 
 /* PAGE belegen*/
-$PAGE->set_url('/mod/apeinsdrei/view.php', array('id' => $cm->id));
+$PAGE->set_url('/mod/apeinsdrei/new_resource_view.php', array('id' => $cm->id));
 $PAGE->set_title(format_string($apeinsdrei->name));
 $PAGE->set_heading(format_string($course->fullname));
 
@@ -163,7 +163,11 @@ if ($mform->is_cancelled()) {
     if(isset($fromform->LTE) && $fromform->LTE == 1){
         $tags = $tags . ',LTE';
     }
-    
+    //session_start();
+    $_SESSION['ressourcename'] = $ressourcename;
+    $_SESSION['category'] = $category;
+    $_SESSION['tags'] = $tags;
+    $_SESSION['type'] = $type;
     redirect(new moodle_url('../apeinsdrei/newressource.php', array('id' => $cm->id, 'ressourcename' => $ressourcename, 'category' => $category, 'tags' => $tags, 'type' => $type)));
  
  } else {

@@ -58,7 +58,7 @@ echo nl2br("\n");
 echo nl2br("\n");
 
 //Funktionstaste zum Fortfahren definieren
-echo $OUTPUT->single_button(new moodle_url('../apeinsdrei/view.php', array('id' => $cm->id)), 'ok');
+echo $OUTPUT->single_button(new moodle_url('../apeinsdrei/new_resource_view.php', array('id' => $cm->id)), 'ok');
 
 //Finish
 echo $OUTPUT->footer();

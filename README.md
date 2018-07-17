@@ -75,7 +75,7 @@ Code lines beginning with `$` are commands to bre run in a shell like bash. If y
 
 * Move the folder `/vendor`, which was created by composer, in the folder `/source`, overwriting any existing files if asked.
 
-* Implement new functionality in `view.php` and `locallib.php`. In `locallib.php`, most functions are not specific and just require input as a parameter to work with any given process definition.
+* Implement new functionality in `new_resource_view.php` and `locallib.php`. In `locallib.php`, most functions are not specific and just require input as a parameter to work with any given process definition.
 
   * You need the process definition key of your process. This can either be done with the API by using [Swaggerhub](https://app.swaggerhub.com/apis/sWIm/sWIm_activi/v0.2.0#/Process%20Definitions/getProcessDefinitions), or with the key that you specified yourself while uploading the plugin to Activiti (in this case, the field you have to fill out is called "Model key" in the menu "Edit model details". You can edit this field at any point.).
 
@@ -102,7 +102,7 @@ Code lines beginning with `$` are commands to bre run in a shell like bash. If y
 * Have fun playing with your Moodle plugin!
 
 * You may now proceed to run your own code in an attempt to develop
-  your module. You will probably want to modify mod_form.php and view.php
+  your module. You will probably want to modify mod_form.php and new_resource_view.php
   as a first step. Check db/access.php to add capabilities.
   Go to Settings > Site Administration > Development > XMLDB editor
   and modify the module's tables.

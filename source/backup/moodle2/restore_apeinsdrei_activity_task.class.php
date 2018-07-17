@@ -73,7 +73,7 @@ class restore_apeinsdrei_activity_task extends restore_activity_task {
     static public function define_decode_rules() {
         $rules = array();
 
-        $rules[] = new restore_decode_rule('apeinsdreiVIEWBYID', '/mod/apeinsdrei/view.php?id=$1', 'course_module');
+        $rules[] = new restore_decode_rule('apeinsdreiVIEWBYID', '/mod/apeinsdrei/new_resource_view.php?id=$1', 'course_module');
         $rules[] = new restore_decode_rule('apeinsdreiINDEX', '/mod/apeinsdrei/index.php?id=$1', 'course');
 
         return $rules;
@@ -89,9 +89,9 @@ class restore_apeinsdrei_activity_task extends restore_activity_task {
     static public function define_restore_log_rules() {
         $rules = array();
 
-        $rules[] = new restore_log_rule('apeinsdrei', 'add', 'view.php?id={course_module}', '{apeinsdrei}');
-        $rules[] = new restore_log_rule('apeinsdrei', 'update', 'view.php?id={course_module}', '{apeinsdrei}');
-        $rules[] = new restore_log_rule('apeinsdrei', 'view', 'view.php?id={course_module}', '{apeinsdrei}');
+        $rules[] = new restore_log_rule('apeinsdrei', 'add', 'new_resource_view.php?id={course_module}', '{apeinsdrei}');
+        $rules[] = new restore_log_rule('apeinsdrei', 'update', 'new_resource_view.php?id={course_module}', '{apeinsdrei}');
+        $rules[] = new restore_log_rule('apeinsdrei', 'view', 'new_resource_view.php?id={course_module}', '{apeinsdrei}');
 
         return $rules;
     }
