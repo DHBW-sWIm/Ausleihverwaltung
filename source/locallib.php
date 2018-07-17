@@ -368,11 +368,15 @@ function generate_pdf($replacements, $id) {
 	$leihschein->setPrintHeader(false);
 	$leihschein->setPrintFooter(false);
 
+	$filename = "leihschein";
+	$filename .= $id;
+	$filename .= ".pdf";
+
 	ob_clean();
-	error_reporting(E_ALL);
-	$leihschein->Output('leihschein.pdf', 'D');
+	$leihschein->Output($filename, 'D');
 }
-function mail_confirm_ausleihantrag($iEmail,$iName,$iAusleihantrag,$iUserrolle){
+
+function mail_confirm_ausleihantrag($iEmail, $iName, $iAusleihantrag, $iUserrolle){
 	//Erwartet wird Email & Namen des Ausleihenden, die Userrolle(student v teacher v editingteacher)und die Nachricht(Ausleihantrag) als String
 
 	global $DB;
@@ -393,7 +397,7 @@ function mail_confirm_ausleihantrag($iEmail,$iName,$iAusleihantrag,$iUserrolle){
 				mail_to($EmailLaboringenieur,'Laboringenieur','Eingang Ausleihantrag Dozenten',$iAusleihantrag);
 		}
 		else{
-			//Benachrichtigung externe Asusleihe
+			//Benachrichtigung externe Ausleihe
 			mail_to($iEmail,$iName,'Eingang Ihres Ausleihantrags',$iAusleihantrag);
 			mail_to($EmailLaboringenieur,'Laboringenieur','Eingang eines externen Ausleihantrags',$iAusleihantrag);
 		}
