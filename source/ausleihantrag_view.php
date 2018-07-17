@@ -122,11 +122,23 @@ if ($mform->is_cancelled()) {
     $record1->borrowdate = $tomorrowint;
     $record1->accepted = true;
 
+    $emailstring = "Sehr geehrte/r ". $value1 . ",
+    Ihr Ausleihantrag ist bei uns eingangen.
+    Wir werden Ihren Antrag schnellst möglich bearbeiten.
+
+    Mit freundlichen Grüßen,
+    DHBW Mannheim
+    ";
+
+    mail_confirm_ausleihantrag($value3, $value1, $emailstring, 'student');    
+
     $recordid = $DB->insert_record('ausleihverwaltung_borrowed', $record1, $returnid=true, $bulk=false);
 
     if (!empty($recordid)){
     ?> <script type="text/javascript">alert("Antrag wurde verschickt!")</script><?php
-    };
+};
+
+
 
     redirect(new moodle_url('../ausleihverwaltung/checkdeadline_view.php', array('id' => $cm->id)));
 
