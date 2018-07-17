@@ -35,64 +35,6 @@ defined('MOODLE_INTERNAL') || die();
  * @return bool
  */
 function xmldb_ausleihverwaltung_upgrade($oldversion) {
-<<<<<<< HEAD
-    global $DB;
-
-    $dbman = $DB->get_manager(); // Loads ddl manager and xmldb classes.
-
-    if ($oldversion < 2018071106) {
-
-        // Define table ausleihverwaltung_borrowed to be created.
-        $table = new xmldb_table('ausleihverwaltung_borrowed');
-
-        // Adding fields to table ausleihverwaltung_borrowed.
-        $table->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
-        $table->add_field('duedate', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '9999999999');
-        $table->add_field('resourceid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
-        $table->add_field('studentmatrikelnummer', XMLDB_TYPE_INTEGER, '7', null, XMLDB_NOTNULL, null, null);
-        $table->add_field('studentmailaddress', XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null);
-        $table->add_field('borrowdate', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
-        $table->add_field('studentname', XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null);
-        $table->add_field('borrowreason', XMLDB_TYPE_TEXT, null, null, null, null, null);
-        $table->add_field('comment', XMLDB_TYPE_TEXT, null, null, null, null, null);
-        $table->add_field('accepted', XMLDB_TYPE_INTEGER, null, null, XMLDB_NOTNULL, null, null);
-        $table->add_field('returned', XMLDB_TYPE_BINARY, null, null, XMLDB_NOTNULL, null, null);
-
-        // Adding keys to table ausleihverwaltung_borrowed.
-        $table->add_key('primary', XMLDB_KEY_PRIMARY, array('id'));
-
-        // Conditionally launch create table for ausleihverwaltung_borrowed.
-        if (!$dbman->table_exists($table)) {
-            $dbman->create_table($table);
-        }
-
-        // ausleihverwaltung savepoint reached.
-        upgrade_mod_savepoint(true, 2018071106, 'ausleihverwaltung');
-    }
-
-    if ($oldversion < 2018071106) {
-
-        // Define table ausleihverwaltung_resp to be created.
-        $table = new xmldb_table('ausleihverwaltung_resp');
-
-        // Adding fields to table ausleihverwaltung_resp.
-        $table->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
-        $table->add_field('dudesname', XMLDB_TYPE_CHAR, '255', null, null, null, null);
-        $table->add_field('dudesmail', XMLDB_TYPE_CHAR, '255', null, null, null, null);
-
-        // Adding keys to table ausleihverwaltung_resp.
-        $table->add_key('primary', XMLDB_KEY_PRIMARY, array('id'));
-
-        // Conditionally launch create table for ausleihverwaltung_resp.
-        if (!$dbman->table_exists($table)) {
-            $dbman->create_table($table);
-        }
-
-        // ausleihverwaltung savepoint reached.
-        upgrade_mod_savepoint(true, 2018071106, 'ausleihverwaltung');
-    }
-=======
     
->>>>>>> master
     return true;
 }
