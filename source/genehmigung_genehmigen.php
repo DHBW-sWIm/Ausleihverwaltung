@@ -85,7 +85,7 @@ if ($mform->is_cancelled()) {
         
         $mailText = "Sehr geehrte/r " . $name . ",\n\nSie haben kürzlich einen Antrag über das Ausleihen einer Ressource (ID: " . $res_id . ") gestellt.\n\nDer Antrag wurde genehmigt.\n" . $abholort . "\n\nDies ist eine automatisch generierte Mail. Antworten auf diese Mail werden daher unbeantwortet bleiben.\n\nMit freundlichem Gruß,\ndas IT Team der DHBW Mannheim";
 
-        $mail_add = "alexanderburghardt@web.de";
+        $mail_add = "swim15.noreplay@gmail.com";
         mail_to($mail_add, $name, 'Ausleihantrag genehmigt', $mailText);
         
         $message =  "Der Antrag wurde genehmigt und der Antragsteller wurde per Email darüber informiert.";
