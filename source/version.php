@@ -20,18 +20,24 @@
  * Setting the $plugin->version to 0 prevents the plugin from being installed.
  * See https://docs.moodle.org/dev/version.php for more info.
  *
- * @package    mod_apeinsdrei
+ * @package    mod_ausleihverwaltung
  * @copyright  2016 Your Name <your@email.address>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
+<<<<<<< HEAD
 $plugin->component = 'mod_apeinsdrei';
 $plugin->version = 2018071702;
 $plugin->release = '2018071702';
 $plugin->requires = 2014051218;
+=======
+$plugin->component = 'mod_ausleihverwaltung';
+$plugin->version = 2018071508;
+$plugin->release = 'v1';
+$plugin->requires = 2014051200;
+>>>>>>> master
 $plugin->maturity = MATURITY_ALPHA;
 $plugin->cron = 0;
 $plugin->dependencies = array();
-

@@ -13,36 +13,31 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
  * Defines the view event.
  *
- * @package    mod_apeinsdrei
+ * @package    mod_ausleihverwaltung
  * @copyright  2016 Your Name <your@email.address>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
-namespace mod_apeinsdrei\event;
-
+namespace mod_ausleihverwaltung\event;
 defined('MOODLE_INTERNAL') || die();
-
 /**
- * The mod_apeinsdrei instance viewed event class
+ * The mod_ausleihverwaltung instance viewed event class
  *
  * If the view mode needs to be stored as well, you may need to
  * override methods get_url() and get_legacy_log_data(), too.
  *
- * @package    mod_apeinsdrei
+ * @package    mod_ausleihverwaltung
  * @copyright  2016 Your Name <your@email.address>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class course_module_viewed extends \core\event\course_module_viewed {
-
     /**
      * Initialize the event
      */
     protected function init() {
-        $this->data['objecttable'] = 'apeinsdrei';
+        $this->data['objecttable'] = 'ausleihverwaltung';
         parent::init();
     }
 }
