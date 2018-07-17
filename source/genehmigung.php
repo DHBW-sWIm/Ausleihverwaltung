@@ -79,7 +79,7 @@ foreach ($resource as $res) {
 //Tabelle ausgeben
 echo html_writer::table($table);
 
-echo $OUTPUT->single_button(new moodle_url('../ausleihverwaltung/view.php', array('antragid' => $antragID)), 'Abbrechen');
+echo $OUTPUT->single_button(new moodle_url('../ausleihverwaltung/view.php', array('id' => $cm->id)), 'Abbrechen');
 echo $OUTPUT->single_button(new moodle_url('../ausleihverwaltung/genehmigung_genehmigen.php', array('id' => $cm->id, 'antragid' => $antragID, 'rowid' => $rowID)), 'Genehmigen', $attributes=null);
 echo $OUTPUT->single_button(new moodle_url('../ausleihverwaltung/genehmigung_frage.php', array('id' => $cm->id, 'antragid' => $antragID, 'rowid' => $rowID)), 'Frage stellen', $attributes=null);
 echo $OUTPUT->single_button(new moodle_url('../ausleihverwaltung/genehmigung_ablehnen.php', array('id' => $cm->id, 'antragid' => $antragID, 'rowid' => $rowID)), 'Ablehnen', $attributes=null);
