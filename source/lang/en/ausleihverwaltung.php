@@ -40,3 +40,7 @@ $string['ausleihverwaltungname_help'] = 'This is the content of the help tooltip
 $string['ausleihverwaltung'] = 'ausleihverwaltung';
 $string['pluginadministration'] = 'ausleihverwaltung administration';
 $string['pluginname'] = 'ausleihverwaltung';
+$string['category'] ='category';
+$string['tag'] = 'Tag';
+$string['Stueckgut'] = 'Stueckgut';
+$string['Schuettgut'] = 'Schuettgut';
