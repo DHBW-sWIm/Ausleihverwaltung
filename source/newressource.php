@@ -140,7 +140,7 @@ if ($mform->is_cancelled()) {
             ?> <script type="text/javascript">alert("Ressource angelegt!")</script><?php
         };
         
-        echo $OUTPUT->single_button(new moodle_url('../ausleihverwaltung/new_resource_view.php', array('id' => $cm->id)), 'Home');
+        redirect(new moodle_url('../ausleihverwaltung/resources_view.php', array('id' => $cm->id, 'ressourcename' => $ressourcename, 'category' => $category, 'tags' => $tags, 'type' => $type)));
     }else{
         $beschreibung = $fromform->besch;
         $kommentar = $fromform->kom;
@@ -160,7 +160,7 @@ if ($mform->is_cancelled()) {
             ?> <script type="text/javascript">alert("Ressource angelegt!")</script><?php
         };
         
-        echo $OUTPUT->single_button(new moodle_url('../ausleihverwaltung/new_resource_view.php', array('id' => $cm->id)), 'Home');
+        echo $OUTPUT->single_button(new moodle_url('../ausleihverwaltung/view.php', array('id' => $cm->id)), 'Home');
     }
 
     //Button Funktionalität hinzugefügt
