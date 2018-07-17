@@ -381,30 +381,35 @@ function mail_confirm_ausleihantrag($iEmail, $iName, $iAusleihantrag, $iUserroll
 
 	global $DB;
 
+	$emailcontent = "Sehr geehrte Damen und Herren,
+	Es ist ein neuer Ausleihantrag eingangen.
+	Bitte bearbeiten Sie diesen schnellstmöglich.
+    ";
+
 	//Deklarierung der Genehmiger
-	$EmailLaboringenieur = 'Laboringenieur@dhbw-mannheim.de';
+	$EmailLaboringenieur = 'qtn@live.de';
 	$EmailStudiengangsleitung ='Studiengangsleitung@dhbw-mannheim.de';
 
 		if (strpos($iUserrolle, 'student') == true){
 				//Benachrichtigung Studentische Ausleihe
 				mail_to($iEmail,$iName,'Eingang Ihres Ausleihantrags',$iAusleihantrag);
-				mail_to($EmailStudiengangsleitung,'Studiengangsleitung','Eingang Ausleihantrag Student',$iAusleihantrag);
-				mail_to($EmailLaboringenieur,'Laboringenieur','Eingang Ausleihantrag Student',$iAusleihantrag);
+				mail_to($EmailStudiengangsleitung,'Studiengangsleitung','Eingang Ausleihantrag Student',$emailcontent);
+				mail_to($EmailLaboringenieur,'Laboringenieur','Eingang Ausleihantrag Student',$emailcontent);
 		}
 		if(strpos($iUserrolle, 'teacher') == true){
 				//Benachrichtigung Dozenten Ausleihe
 				mail_to($iEmail,$iName,'Eingang Ihres Ausleihantrags',$iAusleihantrag);
-				mail_to($EmailLaboringenieur,'Laboringenieur','Eingang Ausleihantrag Dozenten',$iAusleihantrag);
+				mail_to($EmailLaboringenieur,'Laboringenieur','Eingang Ausleihantrag Dozenten',$emailcontent);
 		}
 		else{
 			//Benachrichtigung externe Ausleihe
 			mail_to($iEmail,$iName,'Eingang Ihres Ausleihantrags',$iAusleihantrag);
-			mail_to($EmailLaboringenieur,'Laboringenieur','Eingang eines externen Ausleihantrags',$iAusleihantrag);
+			mail_to($EmailLaboringenieur,'Laboringenieur','Eingang eines externen Ausleihantrags',$emailcontent);
 		}
 
 	//Persistente Speicherung der Emailadresse und der Nachricht/Ausleihantrags in der DB
 	$record = new stdClass();
 	$record->email        = $iEmail;
 	$record->message = $iAusleihantrag;
-	$lastinsertid = $DB->insert_record('ausleihverwaltung_emailantrag', $record, false);
+	$lastinsertid = $DB->insert_record('ausleihverwaltung_email', $record, false);
 	}

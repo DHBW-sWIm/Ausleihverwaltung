@@ -52,35 +52,53 @@ $event->trigger();
 $PAGE->set_url('/mod/ausleihverwaltung/view.php', array('id' => $cm->id));
 $PAGE->set_title(format_string($ausleihverwaltung->name));
 $PAGE->set_heading(format_string($course->fullname));
+// Hier beginnt die Ausgabe
+echo $OUTPUT->header();
 
 // Conditions to show the intro can change to look for own settings or whatever.
 if ($ausleihverwaltung->intro) {
     echo $OUTPUT->box(format_module_intro('ausleihantrag', $ausleihverwaltung, $cm->id), 'generalbox mod_introbox', 'ausleihantragintro');
 }
 
-// Hier beginnt die Ausgabe
-echo $OUTPUT->header();
-$strName = "Ausleihantrag stellen";
-echo $OUTPUT->heading($strName);
-echo $OUTPUT->single_button(new moodle_url('../ausleihverwaltung/ausleihantrag_view.php', array('id' => $cm->id)), 'Ausleihantrag stellen');
-echo '<br>';
-echo '<br>';
+echo $OUTPUT->heading('Genehmigungen: Übersicht');
 
-$strName = "Ausleihen-Übersicht";
-echo $OUTPUT->heading($strName);
-echo $OUTPUT->single_button(new moodle_url('../ausleihverwaltung/checkdeadline_view.php', array('id' => $cm->id)), 'Ausleihübersicht anzeigen');
-echo '<br>';
-echo '<br>';
+$attributes = array();
+// Alle Datensätze aus der DB-Tabelle >>resources<< abfragen.
+$resource = $DB->get_records('ausleihverwaltung_borrowed');
 
-$strName = "Ausleihanträge genehmigen";
-echo $OUTPUT->heading($strName);
-echo $OUTPUT->single_button(new moodle_url('../ausleihverwaltung/genehmigung_view.php', array('id' => $cm->id)), 'Genehmigungsübersicht');
-echo '<br>';
-echo '<br>';
-$strName = "Ressourcen-Übersicht";
-echo $OUTPUT->heading($strName);
-echo $OUTPUT->single_button(new moodle_url('../ausleihverwaltung/resources_view.php', array('id' => $cm->id)), 'Ressourcenübersicht anzeigen');
-echo '<br>';
-echo '<br>';
+$table = new html_table();
+$table->head = array('Gerät','Ausleiher', 'Zeitraum von', 'Zeitraum bis');
+
+//Für jeden Datensatz
+foreach ($resource as $res) {
+    $id = $res->id;
+    $duedate = $res->duedate;
+    $resourceid = $res->resourceid;
+    $studentmatrikelnummer = $res->studentmatrikelnummer;
+    $studentmailaddress = $res->studentmailaddress;
+    $borrowdate = $res->borrowdate;
+    $studentname = $res->studentname;
+    $borrowreason = $res->borrowreason;
+    $comment = $res->comment;
+    $accepted = $res->accepted;
+    $returned = $res->returned;
+    $abholort = $res->abholort;
+    
+    $borrowdate_conv = new DateTime("@$borrowdate");  // convert UNIX timestamp to PHP DateTime
+    $duedate_conv = new DateTime("@$duedate");  // convert UNIX timestamp to PHP DateTime
+//    echo $borrowdate_conv->format('d.m.Y'); // output = 2017-01-01 00:00:00
+    
+//Link zum Bearbeiten der aktuellen Ressource in foreach-Schleife setzen
+  
+    $htmlLink = html_writer::link(new moodle_url('../ausleihverwaltung/genehmigung.php', array('id' => $cm->id, 'antragid' => $res->id)), 'Genehmigen/Ablehnen', $attributes=null);
+
+//Daten zuweisen an HTML-Tabelle
+    if($accepted == 0){
+        $table->data[] = array($resourceid, $studentname, $borrowdate_conv->format('d.m.Y'), $duedate_conv->format('d.m.Y'), $htmlLink);
+    }
+}
+//Tabelle ausgeben
+echo html_writer::table($table);
+
 // Finish the page.
 echo $OUTPUT->footer();
