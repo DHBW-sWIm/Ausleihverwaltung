@@ -89,7 +89,7 @@ foreach ($modinfo->instances['ausleihverwaltung'] as $cm) {
 
     $class = $cm->visible ? null : array('class' => 'dimmed');
 
-    $row[] = html_writer::link(new moodle_url('view.php', array('id' => $cm->id)),
+    $row[] = html_writer::link(new moodle_url('new_resource_view.php', array('id' => $cm->id)),
                 $cm->get_formatted_name(), $class);
     $table->data[] = $row;
 }

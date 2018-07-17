@@ -58,34 +58,96 @@ $event->trigger();
 
 
 /* PAGE belegen*/
-$PAGE->set_url('/mod/ausleihverwaltung/view.php', array('id' => $cm->id));
+$PAGE->set_url('/mod/ausleihverwaltung/new_resource_view.php', array('id' => $cm->id));
 $PAGE->set_title(format_string($ausleihverwaltung->name));
 $PAGE->set_heading(format_string($course->fullname));
 
 // Hier beginnt die Ausgabe
 echo $OUTPUT->header();
 
-$strName = "Ausleihantrag stellen";
+$strName = "Ressource anlegen";
 echo $OUTPUT->heading($strName);
-echo $OUTPUT->single_button(new moodle_url('../ausleihverwaltung/ausleihantrag_view.php', array('id' => $cm->id)), 'Ausleihantrag stellen');
-echo '<br>';
-echo '<br>';
-// Conditions to show the intro can change to look for own settings or whatever.
-if ($ausleihverwaltung->intro) {
-    echo $OUTPUT->box(format_module_intro('ausleihantrag', $ausleihverwaltung, $cm->id), 'generalbox mod_introbox', 'ausleihantragintro');
-}
-
-$strName = "Ausleihen-Übersicht";
-echo $OUTPUT->heading($strName);
-echo $OUTPUT->single_button(new moodle_url('../ausleihverwaltung/checkdeadline_view.php', array('id' => $cm->id)), 'Ausleihübersicht anzeigen');
-echo '<br>';
-echo '<br>';
-
-$strName = "Ressourcen-Übersicht";
-echo $OUTPUT->heading($strName);
-echo $OUTPUT->single_button(new moodle_url('../ausleihverwaltung/resources_view.php', array('id' => $cm->id)), 'Ressourcenübersicht anzeigen');
-echo '<br>';
-echo '<br>';
+require_once(dirname(__FILE__).'/forms/newresourceform.php');
+$mform = new newresourcehtml_form(null);
+//Form processing and displaying is done here
+if ($mform->is_cancelled()) {
+    //Handle form cancel operation, if cancel button is present on form
+ } else if ($fromform = $mform->get_data()) {
+    
+    //dynamisches Auslesen der eingegebenen Daten
+    $ressourcename = $fromform->name;
+    switch ($fromform->category) {
+        case 0:
+            $category = 'Handy';
+        break;
+        case 1:
+            $category = 'Tablet';
+        break;
+        case 2:
+            $category = 'Laptop';
+        break;
+        case 3:
+            $category = 'Computer';
+        break;
+        case 4:
+            $category = 'Software';
+        break;
+        case 5:
+            $category = 'Drucker';
+        break;
+        case 6:
+            $category = 'Kabel';
+        break;
+    };
+    switch ($fromform->resourcetype) {
+        case 0:
+            $type = 0;
+        break;
+        case 1:
+            $type = 1;
+        break;
+    };
+    $tags = '';
+    if(isset($fromform->iPhone) && $fromform->iPhone == 1){
+        $tags = $tags . 'iPhone';
+    }
+    if(isset($fromform->Convertible) && $fromform->Convertible == 1){
+        $tags = $tags . ',Convertible';
+    }
+    if(isset($fromform->Mac) && $fromform->Mac == 1){
+        $tags = $tags . ',Mac';
+    }
+    if(isset($fromform->Huawai) && $fromform->Huawai == 1){
+        $tags = $tags . ',Huawai';
+    }
+    if(isset($fromform->Samsung) && $fromform->Samsung == 1){
+        $tags = $tags . ',Samsung';
+    }
+    if(isset($fromform->Nexus) && $fromform->Nexus == 1){
+        $tags = $tags . ',Nexus';
+    }
+    if(isset($fromform->LTE) && $fromform->LTE == 1){
+        $tags = $tags . ',LTE';
+    }
+    //session_start();
+    $_SESSION['ressourcename'] = $ressourcename;
+    $_SESSION['category'] = $category;
+    $_SESSION['tags'] = $tags;
+    $_SESSION['type'] = $type;
+    redirect(new moodle_url('../ausleihverwaltung/newressource.php', array('id' => $cm->id, 'ressourcename' => $ressourcename, 'category' => $category, 'tags' => $tags, 'type' => $type)));
+ 
+ } else {
+  // this branch is executed if the form is submitted but the data doesn't validate and the form should be redisplayed
+  // or on the first display of the form.
+ 
+  // Set default data (if any)
+  // Required for module not to crash as a course id is always needed
+  $formdata = array('id' => $id);
+  $mform->set_data($formdata);
+  //displays the form
+  $mform->display();
+ 
+ }
 
 // Finish the page.
 echo $OUTPUT->footer();

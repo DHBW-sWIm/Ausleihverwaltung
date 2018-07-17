@@ -102,6 +102,7 @@ foreach ($resource as $res) {
 //Tabelle ausgeben
 echo html_writer::table($table);
 
+echo $OUTPUT->single_button(new moodle_url('../ausleihverwaltung/new_resource_view.php', array('id' => $cm->id)), 'Neue Ressource anlegen');
 echo $OUTPUT->single_button(new moodle_url('../ausleihverwaltung/view.php', array('id' => $cm->id)), 'Home');
 
 echo $OUTPUT->footer();

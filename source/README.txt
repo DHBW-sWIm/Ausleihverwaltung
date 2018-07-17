@@ -43,7 +43,7 @@ this module template code.
   installed modules.
 
 * You may now proceed to run your own code in an attempt to develop
-  your module. You will probably want to modify mod_form.php and view.php
+  your module. You will probably want to modify mod_form.php and new_resource_view.php
   as a first step. Check db/access.php to add capabilities.
   Go to Settings > Site Administration > Development > XMLDB editor
   and modify the module's tables.
