@@ -114,7 +114,7 @@ if ($mform->is_cancelled()) {
     $record1->borrowreason = $value5;
     $record1->duedate = $value6;
     $record1->resourceid = $value7;
-    $record1->returned = $value8;
+    $record1->accepted = $value8;
 
     $tomorrow = new DateTime("1 day", core_date::get_server_timezone_object());
     $tomorrowint = $tomorrow->getTimestamp();

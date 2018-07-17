@@ -54,6 +54,7 @@ $table->head = array('Ausleiher','Grund der Ausleihe', 'Zeitraum', 'Anmerkungen'
 
 //Für jeden Datensatz
 foreach ($resource as $res) {
+    if (!$borrowed->accepted){
     $id = $res->id;
     $duedate = $res->duedate;
     $resourceid = $res->resourceid;
@@ -75,6 +76,7 @@ foreach ($resource as $res) {
         $table->data[] = array($studentname, $borrowreason, $borrowdate_conv->format('d.m.Y') . ' - ' . $duedate_conv->format('d.m.Y'), $comment);
         $rowID = $id;
     }
+}
 }
 //Tabelle ausgeben
 echo html_writer::table($table);
