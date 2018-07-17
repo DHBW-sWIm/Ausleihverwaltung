@@ -60,7 +60,7 @@ if ($ausleihverwaltung->intro) {
     echo $OUTPUT->box(format_module_intro('ausleihantrag', $ausleihverwaltung, $cm->id), 'generalbox mod_introbox', 'ausleihantragintro');
 }
 
-echo $OUTPUT->heading('ausleihverwaltung: Übersicht');
+echo $OUTPUT->heading('Genehmigungen: Übersicht');
 
 $attributes = array();
 // Alle Datensätze aus der DB-Tabelle >>resources<< abfragen.

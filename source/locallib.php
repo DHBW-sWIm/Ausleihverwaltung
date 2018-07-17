@@ -411,5 +411,5 @@ function mail_confirm_ausleihantrag($iEmail, $iName, $iAusleihantrag, $iUserroll
 	$record = new stdClass();
 	$record->email        = $iEmail;
 	$record->message = $iAusleihantrag;
-	$lastinsertid = $DB->insert_record('ausleihverwaltung_emailantrag', $record, false);
+	$lastinsertid = $DB->insert_record('ausleihverwaltung_email', $record, false);
 	}
