@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Defines backup_apeinsdrei_activity_task class
+ * Defines backup_ausleihverwaltung_activity_task class
  *
- * @package   mod_apeinsdrei
+ * @package   mod_ausleihverwaltung
  * @category  backup
  * @copyright 2016 Your Name <your@email.address>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -25,17 +25,17 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-require_once($CFG->dirroot . '/mod/apeinsdrei/backup/moodle2/backup_apeinsdrei_stepslib.php');
+require_once($CFG->dirroot . '/mod/ausleihverwaltung/backup/moodle2/backup_ausleihverwaltung_stepslib.php');
 
 /**
- * Provides the steps to perform one complete backup of the apeinsdrei instance
+ * Provides the steps to perform one complete backup of the ausleihverwaltung instance
  *
- * @package   mod_apeinsdrei
+ * @package   mod_ausleihverwaltung
  * @category  backup
  * @copyright 2016 Your Name <your@email.address>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class backup_apeinsdrei_activity_task extends backup_activity_task {
+class backup_ausleihverwaltung_activity_task extends backup_activity_task {
 
     /**
      * No specific settings for this activity
@@ -44,10 +44,10 @@ class backup_apeinsdrei_activity_task extends backup_activity_task {
     }
 
     /**
-     * Defines a backup step to store the instance data in the apeinsdrei.xml file
+     * Defines a backup step to store the instance data in the ausleihverwaltung.xml file
      */
     protected function define_my_steps() {
-        $this->add_step(new backup_apeinsdrei_activity_structure_step('apeinsdrei_structure', 'apeinsdrei.xml'));
+        $this->add_step(new backup_ausleihverwaltung_activity_structure_step('ausleihverwaltung_structure', 'ausleihverwaltung.xml'));
     }
 
     /**
@@ -61,13 +61,13 @@ class backup_apeinsdrei_activity_task extends backup_activity_task {
 
         $base = preg_quote($CFG->wwwroot, '/');
 
-        // Link to the list of apeinsdreis.
-        $search = '/('.$base.'\/mod\/apeinsdrei\/index.php\?id\=)([0-9]+)/';
-        $content = preg_replace($search, '$@apeinsdreiINDEX*$2@$', $content);
+        // Link to the list of ausleihverwaltungs.
+        $search = '/('.$base.'\/mod\/ausleihverwaltung\/index.php\?id\=)([0-9]+)/';
+        $content = preg_replace($search, '$@ausleihverwaltungINDEX*$2@$', $content);
 
-        // Link to apeinsdrei view by moduleid.
-        $search = '/('.$base.'\/mod\/apeinsdrei\/new_resource_view.php\?id\=)([0-9]+)/';
-        $content = preg_replace($search, '$@apeinsdreiVIEWBYID*$2@$', $content);
+        // Link to ausleihverwaltung view by moduleid.
+        $search = '/('.$base.'\/mod\/ausleihverwaltung\/new_resource_view.php\?id\=)([0-9]+)/';
+        $content = preg_replace($search, '$@ausleihverwaltungVIEWBYID*$2@$', $content);
 
         return $content;
     }

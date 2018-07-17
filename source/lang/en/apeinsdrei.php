@@ -16,30 +16,30 @@
 
 
 /**
- * English strings for apeinsdrei
+ * English strings for ausleihverwaltung
  *
  * You can have a rather longer description of the file as well,
  * if you like, and it can span multiple lines.
  *
- * @package    mod_apeinsdrei
+ * @package    mod_ausleihverwaltung
  * @copyright  2016 Your Name <your@email.address>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['modulename'] = 'apeinsdrei';
-$string['modulenameplural'] = 'apeinsdreis';
-$string['modulename_help'] = 'Use the apeinsdrei module for... | The apeinsdrei module allows...';
-$string['apeinsdrei:addinstance'] = 'Add a new apeinsdrei';
-$string['apeinsdrei:submit'] = 'Submit apeinsdrei';
-$string['apeinsdrei:view'] = 'View apeinsdrei';
-$string['apeinsdreifieldset'] = 'Custom example fieldset';
-$string['apeinsdreiname'] = 'apeinsdrei name';
-$string['apeinsdreiname_help'] = 'This is the content of the help tooltip associated with the apeinsdreiname field. Markdown syntax is supported.';
-$string['apeinsdrei'] = 'apeinsdrei';
-$string['pluginadministration'] = 'apeinsdrei administration';
-$string['pluginname'] = 'apeinsdrei';
+$string['modulename'] = 'ausleihverwaltung';
+$string['modulenameplural'] = 'ausleihverwaltungs';
+$string['modulename_help'] = 'Use the ausleihverwaltung module for... | The ausleihverwaltung module allows...';
+$string['ausleihverwaltung:addinstance'] = 'Add a new ausleihverwaltung';
+$string['ausleihverwaltung:submit'] = 'Submit ausleihverwaltung';
+$string['ausleihverwaltung:view'] = 'View ausleihverwaltung';
+$string['ausleihverwaltungfieldset'] = 'Custom example fieldset';
+$string['ausleihverwaltungname'] = 'ausleihverwaltung name';
+$string['ausleihverwaltungname_help'] = 'This is the content of the help tooltip associated with the ausleihverwaltungname field. Markdown syntax is supported.';
+$string['ausleihverwaltung'] = 'ausleihverwaltung';
+$string['pluginadministration'] = 'ausleihverwaltung administration';
+$string['pluginname'] = 'ausleihverwaltung';
 $string['category'] ='category';
 $string['tag'] = 'Tag';
 $string['Stueckgut'] = 'Stueckgut';

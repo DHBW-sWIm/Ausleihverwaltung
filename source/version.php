@@ -27,17 +27,10 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-<<<<<<< HEAD
-$plugin->component = 'mod_apeinsdrei';
-$plugin->version = 2018071702;
-$plugin->release = '2018071702';
-$plugin->requires = 2014051218;
-=======
 $plugin->component = 'mod_ausleihverwaltung';
 $plugin->version = 2018071508;
 $plugin->release = 'v1';
 $plugin->requires = 2014051200;
->>>>>>> master
 $plugin->maturity = MATURITY_ALPHA;
 $plugin->cron = 0;
 $plugin->dependencies = array();

@@ -134,7 +134,7 @@ if ($mform->is_cancelled()) {
     $_SESSION['category'] = $category;
     $_SESSION['tags'] = $tags;
     $_SESSION['type'] = $type;
-    redirect(new moodle_url('../apeinsdrei/newressource.php', array('id' => $cm->id, 'ressourcename' => $ressourcename, 'category' => $category, 'tags' => $tags, 'type' => $type)));
+    redirect(new moodle_url('../ausleihverwaltung/newressource.php', array('id' => $cm->id, 'ressourcename' => $ressourcename, 'category' => $category, 'tags' => $tags, 'type' => $type)));
  
  } else {
   // this branch is executed if the form is submitted but the data doesn't validate and the form should be redisplayed

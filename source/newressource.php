@@ -15,24 +15,24 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Prints a particular instance of apeinsdrei
+ * Prints a particular instance of ausleihverwaltung
  *
  * You can have a rather longer description of the file as well,
  * if you like, and it can span multiple lines.
  *
- * @package    mod_apeinsdrei
+ * @package    mod_ausleihverwaltung
  * @copyright  2016 Your Name <your@email.address>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-// Replace apeinsdrei with the name of your module and remove this line.
+// Replace ausleihverwaltung with the name of your module and remove this line.
 
 require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
 require_once(dirname(__FILE__).'/lib.php');
 require_once(dirname(__FILE__).'/locallib.php');
 
 $id = optional_param('id', 0, PARAM_INT); // Course_module ID, or
-$n  = optional_param('n', 0, PARAM_INT);  // ... apeinsdrei instance ID - it should be named as the first character of the module.
+$n  = optional_param('n', 0, PARAM_INT);  // ... ausleihverwaltung instance ID - it should be named as the first character of the module.
 $ressourcename = optional_param('ressourcename','', PARAM_TEXT);
 $category = optional_param('category','', PARAM_TEXT);
 $tags = optional_param('tags','', PARAM_TEXT);
@@ -40,25 +40,25 @@ $type = optional_param('type',0, PARAM_INT);
 
 
 if ($id) {
-    $cm         = get_coursemodule_from_id('apeinsdrei', $id, 0, false, MUST_EXIST);
+    $cm         = get_coursemodule_from_id('ausleihverwaltung', $id, 0, false, MUST_EXIST);
     $course     = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
-    $apeinsdrei  = $DB->get_record('apeinsdrei', array('id' => $cm->instance), '*', MUST_EXIST);
+    $ausleihverwaltung  = $DB->get_record('ausleihverwaltung', array('id' => $cm->instance), '*', MUST_EXIST);
 } else if ($n) {
-    $apeinsdrei  = $DB->get_record('apeinsdrei', array('id' => $n), '*', MUST_EXIST);
-    $course     = $DB->get_record('course', array('id' => $apeinsdrei->course), '*', MUST_EXIST);
-    $cm         = get_coursemodule_from_instance('apeinsdrei', $apeinsdrei->id, $course->id, false, MUST_EXIST);
+    $ausleihverwaltung  = $DB->get_record('ausleihverwaltung', array('id' => $n), '*', MUST_EXIST);
+    $course     = $DB->get_record('course', array('id' => $ausleihverwaltung->course), '*', MUST_EXIST);
+    $cm         = get_coursemodule_from_instance('ausleihverwaltung', $ausleihverwaltung->id, $course->id, false, MUST_EXIST);
 } else {
     error('You must specify a course_module ID or an instance ID');
 }
 
 require_login($course, true, $cm);
 
-$event = \mod_apeinsdrei\event\course_module_viewed::create(array(
+$event = \mod_ausleihverwaltung\event\course_module_viewed::create(array(
     'objectid' => $PAGE->cm->instance,
     'context' => $PAGE->context,
 ));
 $event->add_record_snapshot('course', $PAGE->course);
-$event->add_record_snapshot($PAGE->cm->modname, $apeinsdrei);
+$event->add_record_snapshot($PAGE->cm->modname, $ausleihverwaltung);
 $event->trigger();
 
 
@@ -80,23 +80,23 @@ $DB->insert_record('resources', $record, $returnid=false, $bulk=false);
 */
 
 /* PAGE belegen*/
-$PAGE->set_url('/mod/apeinsdrei/newressource.php', array('id' => $cm->id, 'ressourcename' => $_GET['ressourcename'], 'category' => $_GET['category'], 'tags' => $_GET['tags'], 'type' => $_GET['type']));
-$PAGE->set_title(format_string($apeinsdrei->name));
+$PAGE->set_url('/mod/ausleihverwaltung/newressource.php', array('id' => $cm->id, 'ressourcename' => $_GET['ressourcename'], 'category' => $_GET['category'], 'tags' => $_GET['tags'], 'type' => $_GET['type']));
+$PAGE->set_title(format_string($ausleihverwaltung->name));
 $PAGE->set_heading(format_string($course->fullname));
 
 /*
  * Other things you may want to set - remove if not needed.
  * $PAGE->set_cacheable(false);
  * $PAGE->set_focuscontrol('some-html-id');
- * $PAGE->add_body_class('apeinsdrei-'.$somevar);
+ * $PAGE->add_body_class('ausleihverwaltung-'.$somevar);
  */
 
 // Hier beginnt die Ausgabe
 echo $OUTPUT->header();
 
 // Conditions to show the intro can change to look for own settings or whatever.
-if ($apeinsdrei->intro) {
-    echo $OUTPUT->box(format_module_intro('apeinsdrei', $apeinsdrei, $cm->id), 'generalbox mod_introbox', 'apeinsdreiintro');
+if ($ausleihverwaltung->intro) {
+    echo $OUTPUT->box(format_module_intro('ausleihverwaltung', $ausleihverwaltung, $cm->id), 'generalbox mod_introbox', 'ausleihverwaltungintro');
 }
 
 $strName = "Ressource anlegen";
@@ -140,7 +140,7 @@ if ($mform->is_cancelled()) {
             ?> <script type="text/javascript">alert("Ressource angelegt!")</script><?php
         };
         
-        echo $OUTPUT->single_button(new moodle_url('../apeinsdrei/new_resource_view.php', array('id' => $cm->id)), 'Home');
+        echo $OUTPUT->single_button(new moodle_url('../ausleihverwaltung/new_resource_view.php', array('id' => $cm->id)), 'Home');
     }else{
         $beschreibung = $fromform->besch;
         $kommentar = $fromform->kom;
@@ -160,11 +160,11 @@ if ($mform->is_cancelled()) {
             ?> <script type="text/javascript">alert("Ressource angelegt!")</script><?php
         };
         
-        echo $OUTPUT->single_button(new moodle_url('../apeinsdrei/new_resource_view.php', array('id' => $cm->id)), 'Home');
+        echo $OUTPUT->single_button(new moodle_url('../ausleihverwaltung/new_resource_view.php', array('id' => $cm->id)), 'Home');
     }
 
     //Button Funktionalität hinzugefügt
-    //redirect(new moodle_url('../apeinsdrei/new_resource_view.php', array('id' => $cm->id)));
+    //redirect(new moodle_url('../ausleihverwaltung/new_resource_view.php', array('id' => $cm->id)));
  
  } else {
     $formdata = array('id' => $id);
