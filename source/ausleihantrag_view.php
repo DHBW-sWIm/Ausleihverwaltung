@@ -120,7 +120,6 @@ if ($mform->is_cancelled()) {
     $tomorrowint = $tomorrow->getTimestamp();
 
     $record1->borrowdate = $tomorrowint;
-    $record1->accepted = true;
 
     $emailstring = "Sehr geehrte/r ". $value1 . ",
     Ihr Ausleihantrag ist bei uns eingangen.
